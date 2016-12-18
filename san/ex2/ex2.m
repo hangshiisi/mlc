@@ -33,6 +33,8 @@ X = data(:, [1, 2]); y = data(:, 3);
 fprintf(['Plotting data with + indicating (y = 1) examples and o ' ...
          'indicating (y = 0) examples.\n']);
 
+
+
 plotData(X, y);
 
 % Put some labels 
@@ -97,8 +99,8 @@ plotDecisionBoundary(theta, X, y);
 % Put some labels 
 hold on;
 % Labels and Legend
-xlabel('Exam 1 score')
-ylabel('Exam 2 score')
+%xlabel('Exam 1 score')
+%ylabel('Exam 2 score')
 
 % Specified in plot order
 legend('Admitted', 'Not admitted')
