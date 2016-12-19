@@ -21,14 +21,21 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+%[w, p] = max(X * transpose(all_theta), [], 2) 
 
 
+% Add ones to the X data matrix
+A1 = [ones(m, 1) X];
+Z2 = A1 * transpose(Theta1);
 
+A2 = [ones(m, 1) sigmoid(Z2)]; 
+Z3 = A2 * transpose(Theta2); 
 
+A3 = sigmoid(Z3) 
 
+[w, p] = max(A3, [], 2) 
 
-
-
+ 
 % =========================================================================
 
 
