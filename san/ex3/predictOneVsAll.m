@@ -30,7 +30,7 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
-[w, p] = max(X * transpose(all_theta), [], 2) 
+[w, p] = max(X * transpose(all_theta), [], 2); 
 
 
 % X    5000 * 3, all_theta 

@@ -31,9 +31,9 @@ Z2 = A1 * transpose(Theta1);
 A2 = [ones(m, 1) sigmoid(Z2)]; 
 Z3 = A2 * transpose(Theta2); 
 
-A3 = sigmoid(Z3) 
+A3 = sigmoid(Z3);  
 
-[w, p] = max(A3, [], 2) 
+[w, p] = max(A3, [], 2); 
 
  
 % =========================================================================
