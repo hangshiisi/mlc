@@ -64,19 +64,61 @@ Theta2_grad = zeros(size(Theta2));
 
 
 
+% Part 1: Feedforward 
+
+% You need to return the following variables correctly 
+%p = zeros(size(X, 1), 1);
+
+% Add ones to the X data matrix
+%X = [ones(m, 1) X];
+
+%h1 = sigmoid([ones(m, 1) X] * Theta1');
+%h2 = sigmoid([ones(m, 1) h1] * Theta2');
+%J = sum( -y .* log(h2) - (1.0 - y) .* log(1.0 - h2)) / m; 
 
 
 
 
+%[dummy, p] = max(h2, [], 2);
+%[w, p] = max(X * transpose(all_theta), [], 2); 
 
 
+% recode y to Y 
+I = eye(num_labels);
+Y = zeros(m, num_labels);
+for i=1:m
+  Y(i, :)= I(y(i), :);
+end
 
 
+% feedforward
+a1 = [ones(m, 1) X];
+z2 = a1*Theta1';
+a2 = [ones(size(z2, 1), 1) sigmoid(z2)];
+z3 = a2*Theta2';
+a3 = sigmoid(z3);
+h = a3;
 
+% calculte penalty
+p = sum(sum(Theta1(:, 2:end).^2, 2))+sum(sum(Theta2(:, 2:end).^2, 2));
 
+% calculate J
+J = sum(sum((-Y).*log(h) - (1-Y).*log(1-h), 2))/m + lambda*p/(2*m);
 
+% calculate sigmas
+sigma3 = a3.-Y;
+sigma2 = (sigma3*Theta2).*sigmoidGradient([ones(size(z2, 1), 1) z2]);
+sigma2 = sigma2(:, 2:end);
 
+% accumulate gradients
+delta_1 = (sigma2'*a1);
+delta_2 = (sigma3'*a2);
 
+% calculate regularized gradient
+p1 = (lambda/m)*[zeros(size(Theta1, 1), 1) Theta1(:, 2:end)];
+p2 = (lambda/m)*[zeros(size(Theta2, 1), 1) Theta2(:, 2:end)];
+Theta1_grad = delta_1./m + p1;
+Theta2_grad = delta_2./m + p2;
 
 
 
