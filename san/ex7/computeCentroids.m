@@ -37,7 +37,7 @@ for k = 1:K
     end 
   end 
   centroids(k, :) = (ss/num_k)'; 
- end
+end
 
 
 
